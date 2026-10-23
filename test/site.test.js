@@ -77,6 +77,12 @@ test("publishing stamps every asset URL with the commit SHA", async () => {
   }
 });
 
+test("settings are not written to or read from storage", () => {
+  const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
+  assert.equal(app.includes("localStorage.setItem"), false);
+  assert.equal(app.includes("localStorage.getItem"), false);
+});
+
 test("the source page keeps the placeholder for the deploy workflow", () => {
   const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
   assert.equal(html.split(PLACEHOLDER).length - 1, 3);

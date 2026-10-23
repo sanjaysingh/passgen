@@ -3,7 +3,6 @@
 
   var api = globalThis.PasswordGen;
   var LIMITS = api.LIMITS;
-  var STORAGE_KEY = "password-gen.settings.v2";
 
   var passwordEl = document.getElementById("password");
   var copyBtn = document.getElementById("copy");
@@ -46,21 +45,12 @@
     });
   }
 
-  function loadSettings() {
+  function forgetSavedSettings() {
     try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return null;
-      return api.normalizeSettings(JSON.parse(raw));
+      localStorage.removeItem("password-gen.settings.v1");
+      localStorage.removeItem("password-gen.settings.v2");
     } catch (error) {
-      return null;
-    }
-  }
-
-  function save(settings) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-    } catch (error) {
-      /* Private mode and blocked storage can reject writes. Settings still work. */
+      /* Private mode and blocked storage can reject the cleanup. */
     }
   }
 
@@ -165,7 +155,6 @@
   function regenerate() {
     window.clearTimeout(lengthTimer);
     var settings = readSettings();
-    save(settings);
     var result;
     try {
       result = api.generatePassword(settings);
@@ -199,7 +188,6 @@
 
   function setLength(next, delay) {
     updateLengthUI(next);
-    save(readSettings());
     if (delay) scheduleRegenerate();
     else {
       window.clearTimeout(lengthTimer);
@@ -300,6 +288,7 @@
     if (event.key === "Enter") event.preventDefault();
   });
 
-  applySettings(loadSettings() || api.DEFAULTS);
+  forgetSavedSettings();
+  applySettings(api.DEFAULTS);
   regenerate();
 })();

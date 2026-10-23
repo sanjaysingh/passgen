@@ -11,7 +11,7 @@ A private password generator that runs entirely in the browser. Nothing is uploa
 - Generate a new password, copy it, or edit any character by hand.
 - See a strength label. The estimate stays on this device.
 
-Generation uses Web Crypto (`crypto.getRandomValues`) with rejection sampling, so the result does not depend on `Math.random`. At least one character from each enabled set is included when the length allows it. Your settings are saved in `localStorage`. The password is not.
+Generation uses Web Crypto (`crypto.getRandomValues`) with rejection sampling, so the result does not depend on `Math.random`. At least one character from each enabled set is included when the length allows it. A refresh returns the page to these defaults. Nothing is stored.
 
 ## Run it locally
 
