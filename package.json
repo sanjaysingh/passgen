@@ -1,0 +1,9 @@
+{
+  "name": "passgen",
+  "private": true,
+  "description": "A private, in-browser password generator. https://passgen.sanjaysingh.net",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
