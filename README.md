@@ -1,5 +1,8 @@
 # Password Generator
 
+[![Test](https://github.com/sanjaysingh/passgen/actions/workflows/test.yml/badge.svg)](https://github.com/sanjaysingh/passgen/actions/workflows/test.yml)
+[![Deploy to GitHub Pages](https://github.com/sanjaysingh/passgen/actions/workflows/pages.yml/badge.svg)](https://github.com/sanjaysingh/passgen/actions/workflows/pages.yml)
+
 A private password generator that runs entirely in the browser. Nothing is uploaded, and the password is never stored.
 
 **Use it at [https://passgen.sanjaysingh.net](https://passgen.sanjaysingh.net).**
