@@ -77,10 +77,10 @@ test("publishing stamps every asset URL with the commit SHA", async () => {
   }
 });
 
-test("settings are not written to or read from storage", () => {
+test("the page does not use browser storage", () => {
   const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
-  assert.equal(app.includes("localStorage.setItem"), false);
-  assert.equal(app.includes("localStorage.getItem"), false);
+  assert.equal(app.includes("localStorage"), false);
+  assert.equal(app.includes("sessionStorage"), false);
 });
 
 test("the source page keeps the placeholder for the deploy workflow", () => {

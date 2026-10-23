@@ -45,15 +45,6 @@
     });
   }
 
-  function forgetSavedSettings() {
-    try {
-      localStorage.removeItem("password-gen.settings.v1");
-      localStorage.removeItem("password-gen.settings.v2");
-    } catch (error) {
-      /* Private mode and blocked storage can reject the cleanup. */
-    }
-  }
-
   function paintSlider() {
     var min = Number(lengthInput.min);
     var max = Number(lengthInput.max);
@@ -288,7 +279,6 @@
     if (event.key === "Enter") event.preventDefault();
   });
 
-  forgetSavedSettings();
   applySettings(api.DEFAULTS);
   regenerate();
 })();
