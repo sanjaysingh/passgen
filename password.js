@@ -8,7 +8,7 @@
     upper: true,
     digits: true,
     symbols: true,
-    skipLookalikes: false,
+    skipLookalikes: true,
   };
 
   var SETS = {

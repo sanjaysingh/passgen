@@ -3,7 +3,7 @@
 
   var api = globalThis.PasswordGen;
   var LIMITS = api.LIMITS;
-  var STORAGE_KEY = "password-gen.settings.v1";
+  var STORAGE_KEY = "password-gen.settings.v2";
 
   var passwordEl = document.getElementById("password");
   var copyBtn = document.getElementById("copy");

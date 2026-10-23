@@ -64,6 +64,9 @@ test("publishing stamps every asset URL with the commit SHA", async () => {
     assert.match(body, /id="copy"/);
     assert.match(body, /id="password"/);
     assert.match(body, /id="length"/);
+    for (const id of ["lower", "upper", "digits", "symbols", "lookalikes"]) {
+      assert.match(body, new RegExp(`id="${id}"[^>]*\\schecked`));
+    }
     for (const asset of [`styles.css?v=${sha}`, `password.js?v=${sha}`, `app.js?v=${sha}`]) {
       const response = await fetch(`${site.origin}/${asset}`);
       assert.equal(response.status, 200, asset);
