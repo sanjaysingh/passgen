@@ -3,7 +3,6 @@
 
   var api = globalThis.PasswordGen;
   var LIMITS = api.LIMITS;
-  var STORAGE_KEY = "password-gen.settings.v1";
 
   var passwordEl = document.getElementById("password");
   var copyBtn = document.getElementById("copy");
@@ -44,24 +43,6 @@
       symbols: setInputs.symbols.checked,
       skipLookalikes: lookalikes.checked,
     });
-  }
-
-  function loadSettings() {
-    try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return null;
-      return api.normalizeSettings(JSON.parse(raw));
-    } catch (error) {
-      return null;
-    }
-  }
-
-  function save(settings) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-    } catch (error) {
-      /* Private mode and blocked storage can reject writes. Settings still work. */
-    }
   }
 
   function paintSlider() {
@@ -165,7 +146,6 @@
   function regenerate() {
     window.clearTimeout(lengthTimer);
     var settings = readSettings();
-    save(settings);
     var result;
     try {
       result = api.generatePassword(settings);
@@ -199,7 +179,6 @@
 
   function setLength(next, delay) {
     updateLengthUI(next);
-    save(readSettings());
     if (delay) scheduleRegenerate();
     else {
       window.clearTimeout(lengthTimer);
@@ -300,6 +279,6 @@
     if (event.key === "Enter") event.preventDefault();
   });
 
-  applySettings(loadSettings() || api.DEFAULTS);
+  applySettings(api.DEFAULTS);
   regenerate();
 })();

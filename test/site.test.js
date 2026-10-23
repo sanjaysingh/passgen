@@ -64,6 +64,9 @@ test("publishing stamps every asset URL with the commit SHA", async () => {
     assert.match(body, /id="copy"/);
     assert.match(body, /id="password"/);
     assert.match(body, /id="length"/);
+    for (const id of ["lower", "upper", "digits", "symbols", "lookalikes"]) {
+      assert.match(body, new RegExp(`id="${id}"[^>]*\\schecked`));
+    }
     for (const asset of [`styles.css?v=${sha}`, `password.js?v=${sha}`, `app.js?v=${sha}`]) {
       const response = await fetch(`${site.origin}/${asset}`);
       assert.equal(response.status, 200, asset);
@@ -72,6 +75,12 @@ test("publishing stamps every asset URL with the commit SHA", async () => {
   } finally {
     await new Promise((resolve) => site.server.close(resolve));
   }
+});
+
+test("the page does not use browser storage", () => {
+  const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
+  assert.equal(app.includes("localStorage"), false);
+  assert.equal(app.includes("sessionStorage"), false);
 });
 
 test("the source page keeps the placeholder for the deploy workflow", () => {

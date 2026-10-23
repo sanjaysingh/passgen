@@ -17,6 +17,14 @@ test("symbol set stays at the published 25 characters", () => {
   assert.equal(PasswordGen.SETS.symbols.length, 25);
 });
 
+test("every include knob starts on", () => {
+  assert.equal(PasswordGen.DEFAULTS.lower, true);
+  assert.equal(PasswordGen.DEFAULTS.upper, true);
+  assert.equal(PasswordGen.DEFAULTS.digits, true);
+  assert.equal(PasswordGen.DEFAULTS.symbols, true);
+  assert.equal(PasswordGen.DEFAULTS.skipLookalikes, true);
+});
+
 test("generated passwords match the requested length and character sets", () => {
   const settings = {
     length: 20,
