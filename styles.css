@@ -19,7 +19,7 @@
   --weak: #b5523a;
   --fair: #9a7040;
   --strong: #3d6484;
-  --excellent: #234864;
+  --excellent: #2f6b45;
   --shadow: 0 1px 0 rgba(255, 255, 255, 0.75) inset, 0 24px 60px rgba(28, 36, 48, 0.08);
   --sans: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
   --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
@@ -48,7 +48,7 @@
     --weak: #e7a090;
     --fair: #e0c08a;
     --strong: #9ebbd0;
-    --excellent: #d5e4ef;
+    --excellent: #6dbf86;
     --shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 70px rgba(0, 0, 0, 0.38);
   }
 }
@@ -278,12 +278,6 @@ textarea::placeholder {
 
 .icon-btn svg { display: block; }
 .icon-btn .icon-check { display: none; }
-
-.icon-btn.primary {
-  border-color: transparent;
-  background: var(--accent);
-  color: var(--accent-ink);
-}
 
 .icon-btn.is-copied {
   border-color: transparent;
@@ -538,14 +532,13 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @media (hover: hover) {
-  .icon-btn:hover:not(:disabled):not(.primary):not(.is-copied),
+  .icon-btn:hover:not(:disabled):not(.is-copied),
   .stepper button:hover:not(:disabled) {
     background: var(--row-hover);
   }
 
   .toggle:hover { background: var(--row-hover); }
 
-  .icon-btn.primary:hover:not(:disabled),
   .icon-btn.is-copied:hover {
     background: var(--accent-hover);
   }
